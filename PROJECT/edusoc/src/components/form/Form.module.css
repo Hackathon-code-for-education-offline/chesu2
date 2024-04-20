@@ -1,0 +1,10 @@
+
+form{
+    width: 60%;
+    min-height: 300px;
+
+    background-color: var(--background-color-2);
+    box-shadow: var(--shadow);
+
+    margin: 50px auto;
+}

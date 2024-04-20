@@ -1,0 +1,14 @@
+.container{
+    width: 100%;
+    max-width: var(--max-width);
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+
+    gap: var(--base-gap);
+
+
+    border-radius: var(--base-border-radius);
+}

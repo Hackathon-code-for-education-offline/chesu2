@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.rozoomcool.hackapp.composeApp-mergeDebugResources-56:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\adam\\.gradle\\caches\\transforms-3\\810b7e894f2ee8f685e7a52a2a8a761e\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

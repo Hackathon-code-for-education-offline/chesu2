@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.rozoomcool.hackapp.composeApp-mergeDebugResources-56:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\adam\\.gradle\\caches\\transforms-3\\810b7e894f2ee8f685e7a52a2a8a761e\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+.strap{
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background-color-2);
+    padding: 20px;
+
+    gap: var(--base-gap);
+
+
+    border-radius: var(--base-border-radius);
+}

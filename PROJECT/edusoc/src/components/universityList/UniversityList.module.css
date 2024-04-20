@@ -1,0 +1,92 @@
+
+.title {
+    color: var(--main-color-1);
+    text-align: center;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: column;  /* Изменено на column для вертикального списка */
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.universityCard {
+    display: flex;
+    background-color: var(--background-color-2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: var(--max-width);
+    transition: transform 0.3s ease-in-out;
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.universityCard:hover {
+    /*transform: scale(1.03);*/
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+
+    padding: 10px;
+}
+
+.universityInfo {
+    padding: 20px;
+    width: 100%
+}
+
+.universityName {
+    color: var(--main-color-1);
+    margin-bottom: 10px;
+}
+
+.location {
+    color: var(--hover-color-2);
+}
+
+.description {
+    color: var(--main-color-2);
+    font-size: 0.9rem;
+}
+
+
+.faculties {
+    margin-top: 20px;
+}
+
+.facultyTitle {
+    color: var(--main-color-1);
+    font-size: 1.2rem;
+}
+
+.facultyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.facultyCard {
+    background-color: var(--background-color-1);
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    transition: background-color 0.3s ease;
+}
+
+.facultyCard:hover {
+    background-color: var(--hover-color-1);
+    color: white;
+
+    cursor: pointer;
+}
