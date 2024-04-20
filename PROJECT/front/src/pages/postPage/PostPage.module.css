@@ -1,0 +1,65 @@
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+}
+
+.strap{
+    margin: auto;
+    max-width: 1140px;
+    padding: 3rem;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.title, .content {
+    text-align: center;
+    padding: 10px;
+}
+
+.likes, .comments {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.commentSection {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+.comment {
+    background: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.commentForm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.commentSendButton{
+    height: 40px;
+}

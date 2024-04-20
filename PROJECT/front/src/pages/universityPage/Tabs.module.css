@@ -1,0 +1,31 @@
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    width: 100%;
+
+    background-color: var(--background-color-2);
+    border-radius: var(--base-border-radius);
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+    color: var(--main-color-2);
+}
+
+button:hover {
+    color: var(--main-color-1);
+}
+
+.active {
+    color: var(--hover-color-1);
+    border-bottom: 2px solid var(--hover-color-1);
+}
