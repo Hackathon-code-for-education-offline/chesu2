@@ -51,7 +51,9 @@ function Navigations(){
             {isLoggedIn() && <NavigationItem title={'Новая публикация'} to={'/createpost'}></NavigationItem>}
 
             {isLoggedIn() ?
-                <NavigationItem title={user().username} to={'/logout'}></NavigationItem> : <NavigationItem title={'Войти'} to={'/login'}></NavigationItem>}
+                <NavigationItem title={'Профиль'} to={`/users/${user().user_id}`}></NavigationItem> : <NavigationItem title={'Войти'} to={'/login'}></NavigationItem>}
+
+            {/*<NavigationItem title={user().username} to={'/logout'}></NavigationItem> : <NavigationItem title={'Войти'} to={'/login'}></NavigationItem>}*/}
 
 
         </div>

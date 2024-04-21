@@ -1,19 +1,31 @@
 import React from 'react';
 import styles from './UserProfile.module.css';
-import {TransparentButton} from "../generic/button/Button";
+import {Button, TransparentButton} from "../generic/button/Button";
 import Rating from "../rating/Rating";
+import {useAuthStore} from "../../store/auth";
+import {Navigate, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
-    console.log(user);
+    const [isLoggedIn, loogedUser] = useAuthStore((state) => [
+        state.isLoggedIn,
+        state.user,
+    ]);
+
+    const navigate = useNavigate();
+
+    function handleCreatePost(){
+        navigate('/createpost');
+    }
 
     return (
         <div className={styles.card}>
             <div className={styles.profile}>
                 <div className={styles.row}>
-                    <img src={user.avatar} alt={user.username} className={styles.avatar}/>
+                    <img src={user.avatar} className={styles.avatar}/>
                     <div className={styles.info}>
                         <h1 className={styles.username}>{user.username}</h1>
-                        <p className={styles.bio}>{user.description || "No bio provided"}</p>
+                        <p className={styles.bio}>{user.description || "Нет описания"}</p>
 
                         <Rating average={4.6} count={8}></Rating>
                     </div>
@@ -34,19 +46,29 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
                     </div>
                 </div>
 
-                <div className={styles.skillsPanel}>
-                    <h3>Навыки:</h3>
-                    <div className={styles.skills}>
-                        {user.skills && user.skills.map(skill => (
-                            <TransparentButton key={skill.id} extraClasses={[styles.skillCard]}>
-                                <div className={styles.skillName}>{skill.name}</div>
-                            </TransparentButton>
-                        ))}
+                {user.skills.length > 0 &&
+                    <div className={styles.skillsPanel}>
+                        <h3>Навыки:</h3>
+                        <div className={styles.skills}>
+                            {user.skills && user.skills.map(skill => (
+                                <TransparentButton key={skill.id} extraClasses={[styles.skillCard]}>
+                                    <div className={styles.skillName}>{skill.name}</div>
+                                </TransparentButton>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                }
+
+                {isLoggedIn() && user.id === loogedUser().user_id &&
+
+                    <div className={styles.buttons}>
+                        <Button>Редактировать</Button>
+                        <Button onClick={handleCreatePost}>Новая публикация</Button>
+                        <Button onClick={() => navigate('/logout')}>Выйти</Button>
+                    </div>
+                }
 
             </div>
-
         </div>
     );
 };

@@ -2,6 +2,15 @@
 
 }
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin: auto;
+    width: 100%;
+}
+
 .info{
     display: flex;
     flex-direction: column;

@@ -139,6 +139,19 @@ class PostSerializer(serializers.ModelSerializer):
     def get_like_count(self, obj):
         return obj.likes.count()
 
+    def create(self, validated_data):
+        validated_data['author'] = self.context['request'].user
+
+        images_data = self.context['request'].FILES.getlist('photos[]', None)
+        if not images_data:
+            return
+
+        post = Post.objects.create(**validated_data)
+
+        for image_data in images_data:
+            Photo.objects.create(post=post, image=image_data)
+        return post
+
 
 class UniversitySerializer(serializers.ModelSerializer):
     faculties = FacultySerializer(many=True, read_only=True)

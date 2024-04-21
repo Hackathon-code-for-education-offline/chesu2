@@ -4,15 +4,15 @@
     border: 1px solid transparent;
 
     font-family: var(--base-font);
-    padding: 10px 15px;
-    font-size: 12px;
+    padding: 5px 15px;
+    font-size: 14px;
 
     background-color: var(--hover-color-1);
     color: var(--text-color-in-button);
 
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     cursor: pointer;
 }
 

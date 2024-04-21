@@ -2,18 +2,19 @@ from rest_framework import viewsets, generics
 
 from django.shortcuts import render
 from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, UniversitySerializer, FacultySerializer, \
-    PostSerializer, CommentSerializer, UserSerializer
+    PostSerializer, CommentSerializer, UserSerializer, PhotoSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 import json
 
-from .models import User, University, Faculty, Post, Comment
+from .models import User, University, Faculty, Post, Comment, Photo
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -72,9 +73,33 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
 
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+
+    def post(self, request, format=None):
+        serializer = PhotoSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+class PostCreateView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, format=None):
+        print(request)
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CommentCreateView(APIView):
