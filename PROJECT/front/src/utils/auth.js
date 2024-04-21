@@ -21,10 +21,12 @@ export const login = async (username, password) => {
     }
 };
 
-export const register = async (username, email, password, password2) => {
+export const register = async (username, firstName, lastName, email, password, password2) => {
     try {
         const { data } = await axios.post('register/', {
             username,
+            first_name: firstName,
+            last_name: lastName,
             email,
             password,
             password2,

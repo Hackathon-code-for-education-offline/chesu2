@@ -19,6 +19,8 @@ const Login = () => {
     }, []);
 
     const usernameInput = useInput("");
+    const firstNameInput = useInput("");
+    const lastNameInput = useInput("");
     const emailInput = useInput("");
     const passwordInput = useInput("");
     const passwordInput2 = useInput("");
@@ -44,7 +46,8 @@ const Login = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        const { error } = await register(usernameInput.value, emailInput.value, passwordInput.value, passwordInput2.value);
+        const { error } = await register(usernameInput.value, firstNameInput.value,
+            lastNameInput.value, emailInput.value, passwordInput.value, passwordInput2.value);
         if (error) {
             alert(JSON.stringify(error));
         } else {
@@ -70,9 +73,11 @@ const Login = () => {
                         <h1>Создать Аккаунт</h1>
 
                         <Input type={'text'} placeholder={'Имя пользователя'} id={'username'} name={'username'} {...usernameInput}></Input>
+                        <Input type={'text'} placeholder={'Имя'} id={'firstname'} name={'firstname'} {...firstNameInput}></Input>
+                        <Input type={'text'} placeholder={'Фамилия'} id={'lastName'} name={'lastName'} {...lastNameInput}></Input>
                         <Input type={'email'} placeholder={'Электронный адрес почты'} id={'email'} name={'email'}{...emailInput}></Input>
                         <Input type={'password'} placeholder={'Пароль'} id={'password'} name={'password'} {...passwordInput}></Input>
-                        <Input type={'password2'} placeholder={'Подтвердите пароль'} id={'password2'} name={'password2'} {...passwordInput2}></Input>
+                        <Input type={'password'} placeholder={'Подтвердите пароль'} id={'password2'} name={'password2'} {...passwordInput2}></Input>
                         <Button type={'submit'}>Зарегистрироваться</Button>
                     </form>
                 </div>

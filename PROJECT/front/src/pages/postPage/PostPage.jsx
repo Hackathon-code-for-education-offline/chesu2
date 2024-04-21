@@ -18,7 +18,8 @@ const PostPage = () => {
             .then(response => {
                 setPost(response.data);
 
-                axios.get(`http://localhost:8000/api/universities/${response.data.university}/`)
+                console.log(response.data);
+                axios.get(`http://localhost:8000/api/universities/${response.data.author}/`)
                     .then(response => {
                         setUniversity(response.data);
                     })

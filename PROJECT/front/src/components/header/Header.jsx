@@ -46,7 +46,7 @@ function Navigations(){
             {/*<SwitchToggle isChecked={isChecked} onChecked={switchTheme}></SwitchToggle>*/}
             
             <NavigationItem title={'Главная'} to={'/'}></NavigationItem>
-            <NavigationItem title={'Унивситеты'} to={'/universitylist'}></NavigationItem>
+            <NavigationItem title={'Университеты'} to={'/universitylist'}></NavigationItem>
 
             {isLoggedIn() && <NavigationItem title={'Новая публикация'} to={'/createpost'}></NavigationItem>}
 
