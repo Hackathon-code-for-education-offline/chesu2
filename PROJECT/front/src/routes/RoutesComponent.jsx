@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import UniversityList from "../components/universityList/UniversityList";
 import UniversityPage from "../pages/universityPage/UniversityPage";
 import PostPage from "../pages/postPage/PostPage";
+import CreatePostPage from "../pages/createPostPage/CreatePostPage";
 
 function RoutesComponent() {
     return (
@@ -23,7 +24,10 @@ function RoutesComponent() {
                     <Route path="/universities/:universityId" element={<UniversityPage />} />
                     <Route path="/universitylist" element={<UniversityList />} />
 
+                    <Route path="/createpost" element={<CreatePostPage/>} />
+
                     <Route path="/posts/:postId" element={<PostPage />} />
+
 
                 </Routes>
             </MainWrapper>

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 
-function useInput(initialValue) {
+function useInput(initialValue, onChanged = null) {
     const [value, setValue] = useState(initialValue);
 
     const handleChange = (event) => {
         setValue(event.target.value);
+
+        onChanged && onChanged(event.target.value);
     };
 
     // useEffect(() => {
@@ -13,7 +15,8 @@ function useInput(initialValue) {
 
     return {
         value,
-        onChange: handleChange
+        onChange: handleChange,
+        setValue: setValue
     };
 }
 

@@ -5,7 +5,6 @@ import styles from './PostPage.module.css';
 import Container from "../../components/generic/container/Container";
 import Carousel from "./Carousel";
 import Strap from "../../components/strap/Strap";
-import {Input} from "../../components/generic/input/Input";
 import CommentForm from "./CommentForm";
 
 
@@ -13,7 +12,8 @@ const PostPage = () => {
     const {postId} = useParams();
     const [post, setPost] = useState(null);
     const [university, setUniversity] = useState(null);
-    useEffect(() => {
+    
+    function loadData(){
         axios.get(`http://localhost:8000/api/posts/${postId}/`)
             .then(response => {
                 setPost(response.data);
@@ -30,10 +30,15 @@ const PostPage = () => {
             .catch(error => {
                 console.error('Error fetching post:', error);
             });
-    }, [postId, post]);
+    }
+    
+    useEffect(() => {
+        loadData();
+    }, [postId]);
 
     function addComment(comment) {
         post.comments.push(comment);
+        loadData();
     }
 
 
@@ -67,9 +72,6 @@ const PostPage = () => {
 
                 </div>
             </Strap>
-
-
-
         </Container>
     );
 };

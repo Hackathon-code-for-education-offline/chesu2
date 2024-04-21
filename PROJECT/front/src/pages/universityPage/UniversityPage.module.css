@@ -63,3 +63,29 @@
 
     border-radius: var(--small-border-radius);
 }
+
+.placesList{
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: start;
+    width: 100%;
+    min-height: 80px !important;
+    height: auto;
+}
+
+.placeButton{
+    margin: auto 0;
+    width: max-content;
+    padding: 10px 20px;
+}
+
+.pannellum-container {
+    width: 100%;      /* Ширина контейнера */
+    height: 500px;    /* Высота контейнера */
+}
+
+.pannellum{
+    width: 1500px;
+    border-radius: var(--small-border-radius);
+    margin: auto;
+}

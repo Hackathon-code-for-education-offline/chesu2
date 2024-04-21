@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Logo.module.css';
 
-let title_1 = 'Es';
-let title_2 = 'Tech';
+let title_1 = 'Soc';
+let title_2 = 'Edu';
 
 export function Logo() {
     return (

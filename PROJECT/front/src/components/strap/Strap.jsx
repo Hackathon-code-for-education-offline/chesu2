@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './Strap.module.css'
 
 function Strap({children, extraClasses = []}){
-    extraClasses.unshift(styles.strap)
+    const classList = [styles.strap, ...extraClasses];
     return (
-        <div className={extraClasses.join(' ')}>
+        <div className={classList.join(' ')}>
             {children}
         </div>
     );

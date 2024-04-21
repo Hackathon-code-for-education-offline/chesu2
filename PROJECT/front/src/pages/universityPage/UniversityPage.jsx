@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, {post} from 'axios';
 import styles from './UniversityPage.module.css';
 
 import PostList from './PostList';
 import Tabs from "./Tabs";
+import Places from "./Places";
 
 const UniversityPage = () => {
     const { universityId } = useParams();
@@ -45,6 +46,7 @@ const UniversityPage = () => {
             <Tabs onChangeTab={onChangeTab}></Tabs>
 
             {tab === 'posts' && <PostList universityId={universityId} posts={university.posts}/>}
+            {tab === 'places' && <Places places={university.places}/>}
 
         </div>
     );

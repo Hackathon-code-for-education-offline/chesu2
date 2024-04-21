@@ -36,7 +36,7 @@
     color: var(--hover-color-1);
 }
 
-.transparentButton:hover{
+.transparentButton:hover , .transparentButton.active{
     background-color: var(--hover-color-1);
     color: var(--background-color-2);
     font-weight: 800;

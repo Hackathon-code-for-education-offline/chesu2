@@ -30,8 +30,14 @@ function Button({children, onClick, className = styles.button, extraClasses = []
     );
 }
 
-function TransparentButton({reverse=false, ...props}) {
-    reverse && props.extraClasses ? props.extraClasses.push(styles.reverse) : props.extraClasses = [styles.reverse];
+function TransparentButton({reverse= false, active = false, ...props}) {
+    if (reverse){
+        props.extraClasses ? props.extraClasses.push(styles.reverse) : props.extraClasses = [styles.reverse];
+    }
+
+    if (active){
+        props.extraClasses ? props.extraClasses.push(styles.active) : props.extraClasses = [styles.active];
+    }
 
     return (
       <>

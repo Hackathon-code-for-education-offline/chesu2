@@ -40,19 +40,20 @@ function Navigations(){
         state.isLoggedIn,
         state.user,
     ]);
-
+    console.log(user());
     return (
         <div className={styles.navigations}>
             {/*<SwitchToggle isChecked={isChecked} onChecked={switchTheme}></SwitchToggle>*/}
             
             <NavigationItem title={'Главная'} to={'/'}></NavigationItem>
             <NavigationItem title={'Унивситеты'} to={'/universitylist'}></NavigationItem>
-            <NavigationItem title={'Корзина'} to={'/basket'}></NavigationItem>
 
-
+            {isLoggedIn() && <NavigationItem title={'Новая публикация'} to={'/createpost'}></NavigationItem>}
 
             {isLoggedIn() ?
                 <NavigationItem title={user().username} to={'/logout'}></NavigationItem> : <NavigationItem title={'Войти'} to={'/login'}></NavigationItem>}
+
+
         </div>
     );
 }

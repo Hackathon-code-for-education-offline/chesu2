@@ -12,7 +12,7 @@
 .strap{
     margin: auto;
     max-width: 1140px;
-    padding: 3rem;
+    padding: 3rem !important;
 }
 
 .avatar{

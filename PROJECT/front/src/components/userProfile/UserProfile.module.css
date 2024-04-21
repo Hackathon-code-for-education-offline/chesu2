@@ -1,0 +1,50 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.username {
+    font-size: 24px;
+    color: #333;
+}
+
+.description {
+    text-align: center;
+    color: #666;
+}
+
+.socialInfo {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.socialInfo h2 {
+    font-size: 20px;
+    color: #444;
+}
+
+.socialInfo ul {
+    list-style: none;
+    padding: 0;
+}
+
+.socialInfo li {
+    margin: 10px 0;
+    color: #555;
+}
