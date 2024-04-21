@@ -30,3 +30,6 @@
 
 # app - приложение написанная на Kotlin Multiplatform Mobile и поддерживает такие платформы, как ios, android, desktop
 В папке app вы найдете apk файл, который нужно установить на ваше мобильнае устройство android
+
+# Telegram bot
+@provodnikexpress_bot
