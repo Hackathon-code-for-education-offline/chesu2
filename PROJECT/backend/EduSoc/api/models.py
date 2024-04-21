@@ -159,12 +159,13 @@ class Photo(models.Model):
 
 
 class Review(models.Model):
-    university = models.ForeignKey(University, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
+    rating = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     comments = models.ManyToManyField(Comment, blank=True)
 
     def __str__(self):
-        return f"Review by {self.author.username} for {self.university.name}"
+        return f"Review by {self.author.username} for {self.user.username}"

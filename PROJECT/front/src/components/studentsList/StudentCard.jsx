@@ -38,7 +38,7 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
                         <h1 className={styles.username}>{user.username}</h1>
                         <p className={styles.bio}>{user.description || "Нет описания"}</p>
 
-                        <Rating average={4.6} count={8}></Rating>
+                        <Rating average={user.reviews_average} count={user.reviews_count}></Rating>
                     </div>
                 </div>
 

@@ -4,6 +4,7 @@ import styles from './UniversityList.module.css';
 import Container from "../generic/container/Container";
 import {Link} from "react-router-dom";
 import Search from "../generic/search/Search";
+import Rating from "../rating/Rating";
 
 const UniversityList = () => {
     const [universities, setUniversities] = useState([]);
@@ -34,7 +35,10 @@ const UniversityList = () => {
                             <h2 className={styles.universityName}>{university.name}</h2>
                             <p className={styles.location}>{university.location}</p>
                             <p className={styles.description}>{university.description}</p>
+                            <div style={{height: '1rem'}}></div>
+                            <Rating average={5} count={4}></Rating>
                             <div className={styles.faculties}>
+
                                 <h3 className={styles.facultyTitle}>Факультеты:</h3>
                                 <div className={styles.facultyList}>
                                     {university.faculties.map(faculty => (

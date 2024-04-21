@@ -22,6 +22,7 @@ const UniversityPage = () => {
             axios.get(`http://localhost:8000/api/universities/${universityId}/`)
                 .then(response => {
                     setUniversity(response.data);
+                    console.log(response.data);
                 })
                 .catch(error => {
                     console.error('Error fetching university:', error);

@@ -5,8 +5,17 @@ import Container from "../../components/generic/container/Container";
 import Strap from "../../components/strap/Strap";
 import useInput from "../../hooks/useInput";
 import useAxios from "../../utils/useAxios";
+import {useAuthStore} from "../../store/auth";
+import {useNavigate} from "react-router-dom";
 
 const CreatePostPage = () => {
+    const [isLoggedIn, user] = useAuthStore((state) => [
+        state.isLoggedIn,
+        state.user,
+    ]);
+
+    const navigate = useNavigate();
+
     const titleInput = useInput('');
     const descriptionInput = useInput('');
     const [images, setImages] = useState([]);
@@ -45,6 +54,8 @@ const CreatePostPage = () => {
             titleInput.setValue('');
             descriptionInput.setValue('');
             setImages([]);
+
+            navigate(`/users/${user().user_id}`);
         } catch (error) {
             console.error('Failed to add post:', error);
         }

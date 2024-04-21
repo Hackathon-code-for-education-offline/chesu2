@@ -27,7 +27,9 @@ const PostPage = () => {
                     axios.get(`http://localhost:8000/api/universities/${response.data.university_id}/`)
                         .then(response => {
                             setUniversity(response.data);
-                            setProfile(response.data);
+                            setProfile({
+                                name: response.data.name,
+                            });
                         })
                         .catch(error => {
                             console.error('Error fetching university:', error);

@@ -18,9 +18,14 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
         navigate('/createpost');
     }
 
-    function handleOpenChat(){
-        navigate(`/chat/${user.id}`);
-    }
+    const handleOpenChat = async () => {
+        try {
+            const response = await axios.get(`/api/chat/${user.id}/`);
+            navigate(`/chatroom/${response.data.id}`);
+        } catch (error) {
+            console.error('Failed to open chat:', error);
+        }
+    };
 
     return (
         <div className={styles.card}>
@@ -31,7 +36,7 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
                         <h1 className={styles.username}>{user.username}</h1>
                         <p className={styles.bio}>{user.description || "Нет описания"}</p>
 
-                        <Rating average={4.6} count={8}></Rating>
+                        <Rating average={user.reviews_average} count={user.reviews_count}></Rating>
                     </div>
                 </div>
 

@@ -57,17 +57,34 @@ class SkillSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ReviewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
     following_count = serializers.SerializerMethodField()
     followers_count = serializers.SerializerMethodField()
     posts_count = serializers.SerializerMethodField()
 
     skills = SkillSerializer(many=True, read_only=True)
+    reviews = ReviewsSerializer(many=True, read_only=True)
     posts = serializers.SerializerMethodField()
+
+    reviews_average = serializers.SerializerMethodField()
+    reviews_count = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = '__all__'
+
+    def get_reviews_average(self, obj):
+        average = obj.reviews.aggregate(Avg('rating'))['rating__avg']
+        return average if average is not None else 0  # Return 0 if no reviews
+
+    def get_reviews_count(self, obj):
+        return obj.reviews.count()
 
     def get_following_count(self, obj):
         return obj.following.count()
