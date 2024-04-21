@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password2')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'password2')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -37,9 +37,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        print(validated_data)
         user = User.objects.create(
             username=validated_data['username'],
-            email=validated_data.get('email', '')
+            email=validated_data.get('email', ''),
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_nameашчуы', '')
         )
 
         user.set_password(validated_data['password'])
@@ -127,6 +130,7 @@ class PostSerializer(serializers.ModelSerializer):
     photos = PhotoSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
     like_count = serializers.SerializerMethodField()
+    university_id = serializers.IntegerField(source='university.id', read_only=True, allow_null=True)
 
     class Meta:
         model = Post
@@ -139,11 +143,15 @@ class PostSerializer(serializers.ModelSerializer):
 class UniversitySerializer(serializers.ModelSerializer):
     faculties = FacultySerializer(many=True, read_only=True)
     places = PlaceSerializer(many=True, read_only=True)
-    posts = PostSerializer(many=True, read_only=True)
+    posts = serializers.SerializerMethodField()
 
     class Meta:
         model = University
         fields = '__all__'
+
+    def get_posts(self, obj):
+        posts = Post.objects.filter(author__university=obj)
+        return PostSerializer(posts, many=True, read_only=True, context=self.context).data
 
 
 class UniversityAdminSerializer(serializers.ModelSerializer):
