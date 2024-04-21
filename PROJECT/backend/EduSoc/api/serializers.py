@@ -60,6 +60,12 @@ class FacultySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PlaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = '__all__'
+
+
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
@@ -75,7 +81,6 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ['author']
 
     def create(self, validated_data):
-        print(validated_data)
         validated_data['author'] = self.context['request'].user
         return super().create(validated_data)
 
@@ -95,6 +100,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class UniversitySerializer(serializers.ModelSerializer):
     faculties = FacultySerializer(many=True, read_only=True)
+    places = PlaceSerializer(many=True, read_only=True)
     posts = PostSerializer(many=True, read_only=True)
 
     class Meta:

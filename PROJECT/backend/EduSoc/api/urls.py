@@ -11,6 +11,7 @@ from .views import MyTokenObtainPairView, UniversityViewSet, FacultyViewSet, Pos
 
 router = routers.DefaultRouter()
 router.register(r'universities', UniversityViewSet)
+router.register(r'universities', UniversityViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'commets', CommentViewSet)
 router.register(r'faculties', FacultyViewSet)

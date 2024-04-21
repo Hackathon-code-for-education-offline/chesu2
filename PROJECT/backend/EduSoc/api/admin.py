@@ -5,6 +5,7 @@ admin.site.register(User)
 
 admin.site.register(University)
 admin.site.register(Faculty)
+admin.site.register(Place)
 
 admin.site.register(Post)
 admin.site.register(Comment)
