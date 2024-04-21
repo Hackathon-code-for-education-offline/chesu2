@@ -7,9 +7,10 @@ from rest_framework_simplejwt.views import (
 
 from . import views
 from .views import MyTokenObtainPairView, UniversityViewSet, FacultyViewSet, PostViewSet, CommentViewSet, \
-    CommentCreateView
+    CommentCreateView, UserViewSet
 
 router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 router.register(r'universities', UniversityViewSet)
 router.register(r'universities', UniversityViewSet)
 router.register(r'posts', PostViewSet)

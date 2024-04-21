@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, UniversitySerializer, FacultySerializer, \
-    PostSerializer, CommentSerializer
+    PostSerializer, CommentSerializer, UserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -55,6 +55,11 @@ def testEndPoint(request):
         except json.JSONDecodeError:
             return Response("Invalid JSON data", status.HTTP_400_BAD_REQUEST)
     return Response("Invalid JSON data", status.HTTP_400_BAD_REQUEST)
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UniversityViewSet(viewsets.ModelViewSet):

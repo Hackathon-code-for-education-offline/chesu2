@@ -10,6 +10,8 @@ import UniversityList from "../components/universityList/UniversityList";
 import UniversityPage from "../pages/universityPage/UniversityPage";
 import PostPage from "../pages/postPage/PostPage";
 import CreatePostPage from "../pages/createPostPage/CreatePostPage";
+import UserProfile from "../components/userProfile/UserProfile";
+import UserProfilePage from "../pages/UserProfilePage";
 
 function RoutesComponent() {
     return (
@@ -20,6 +22,8 @@ function RoutesComponent() {
                     <Route path="/" element={<MainPage/>} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/logout" element={<Logout/>} />
+
+                    <Route path="/users/:userId" element={<UserProfilePage />} />
 
                     <Route path="/universities/:universityId" element={<UniversityPage />} />
                     <Route path="/universitylist" element={<UniversityList />} />

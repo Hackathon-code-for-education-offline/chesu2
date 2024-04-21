@@ -40,7 +40,7 @@ html[data-theme='dark']{
 
     --gradient: var(--hover-color-2), var(--hover-color-1);
 
-    --color-transparent: rgba(69, 69, 69, 0.41);
+    --color-transparent: rgba(69, 69, 69, 0.5);
 
     --error-color: #DA0037;
 

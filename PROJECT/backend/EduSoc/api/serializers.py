@@ -48,10 +48,36 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
+    following_count = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+    posts_count = serializers.SerializerMethodField()
+
+    skills = SkillSerializer(many=True, read_only=True)
+    posts = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'role', 'university', 'avatar']
+        fields = '__all__'
+
+    def get_following_count(self, obj):
+        return obj.following.count()
+
+    def get_followers_count(self, obj):
+        return obj.followers.count()
+
+    def get_posts_count(self, obj):
+        return obj.posts.count()
+
+    def get_posts(self, obj):
+        posts = obj.posts.all()
+        return PostSerializer(posts, many=True, read_only=True, context=self.context).data
 
 
 class FacultySerializer(serializers.ModelSerializer):
@@ -72,8 +98,14 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class CommentSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True)
+    author = AuthorSerializer(read_only=True)
 
     class Meta:
         model = Comment
@@ -83,6 +115,12 @@ class CommentSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['author'] = self.context['request'].user
         return super().create(validated_data)
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        fields = '__all__'
 
 
 class PostSerializer(serializers.ModelSerializer):

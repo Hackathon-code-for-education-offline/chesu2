@@ -1,14 +1,63 @@
+.card{
+
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+    padding: 20px;
+    gap: 10px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
 .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background: var(--background-color-2);
+    border-radius: var(--window-border-radius);
+    box-shadow: var(--shadow);
+    max-width: 1140px;
+    margin: auto;
+    font-family: var(--base-font);
+
+    gap: 10px;
 }
 
-.userInfo {
+.counter {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background: var(--background-color-1);
+    padding: 10px;
+    border-radius: var(--base-border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.counter div {
+    text-align: center;
+}
+
+.counterTitle {
+    font-size: 16px;
+    color: var(--main-color-1);
+    font-weight: bold;
+}
+
+.counterValue {
+    font-size: 20px;
+    color: var(--main-color-2);
+    font-weight: bold;
 }
 
 .avatar {
@@ -16,35 +65,51 @@
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
+    border: 3px solid var(--background-color-1);
 }
 
 .username {
     font-size: 24px;
-    color: #333;
+    color: var(--main-color-1);
 }
 
-.description {
+.bio {
+    font-size: 16px;
+    color: var(--main-color-2);
     text-align: center;
-    color: #666;
 }
 
-.socialInfo {
-    margin-top: 20px;
+.skillsPanel{
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 5px
 }
 
-.socialInfo h2 {
-    font-size: 20px;
-    color: #444;
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 10px;
 }
 
-.socialInfo ul {
-    list-style: none;
-    padding: 0;
+.skillCard {
+    padding: 7px 15px !important;
 }
 
-.socialInfo li {
-    margin: 10px 0;
-    color: #555;
+.skillCard:hover {
+    background: var(--hover-color-1);
+    color: var(--background-color-2);
+    cursor: pointer;
 }
+
+.skillName {
+    font-size: 14px;
+    font-weight: bold;
+}
+

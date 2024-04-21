@@ -17,6 +17,9 @@ class User(AbstractUser):
     university = models.ForeignKey('University', on_delete=models.SET_NULL, null=True, blank=True)
     avatar = models.ImageField(upload_to='users/', blank=True, null=True)
 
+    description = models.TextField(blank=True, null=True)
+    skills = models.ManyToManyField('Skill', related_name='skills', blank=True)
+
     def follow(self, other_user):
         if other_user != self:
             Subscription.objects.get_or_create(follower=self, followee=other_user)
@@ -26,6 +29,14 @@ class User(AbstractUser):
 
     def is_following(self, other_user):
         return Subscription.objects.filter(follower=self, followee=other_user).exists()
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class University(models.Model):
@@ -97,8 +108,8 @@ class Comment(models.Model):
 
 
 class Post(models.Model):
-    university = models.ForeignKey(University, related_name='posts', on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # university = models.ForeignKey(University, related_name='posts', on_delete=models.CASCADE, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', blank=True)
 
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
