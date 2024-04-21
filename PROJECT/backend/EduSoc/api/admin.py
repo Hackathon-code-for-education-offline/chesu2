@@ -4,6 +4,9 @@ from .models import *
 admin.site.register(User)
 admin.site.register(Skill)
 
+admin.site.register(ChatRoom)
+admin.site.register(Message)
+
 admin.site.register(University)
 admin.site.register(Faculty)
 admin.site.register(Place)

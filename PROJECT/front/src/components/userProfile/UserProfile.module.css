@@ -5,7 +5,7 @@
 .buttons{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
     gap: 1rem;
     margin: auto;
     width: 100%;

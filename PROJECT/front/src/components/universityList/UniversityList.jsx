@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './UniversityList.module.css';
 import Container from "../generic/container/Container";
 import {Link} from "react-router-dom";
+import Search from "../generic/search/Search";
 
 const UniversityList = () => {
     const [universities, setUniversities] = useState([]);
@@ -22,6 +23,7 @@ const UniversityList = () => {
 
     return (
         <Container>
+            <Search />
             <h1 className={styles.title}>Университеты</h1>
             <div className={styles.listContainer}>
                 {universities.map(university => (

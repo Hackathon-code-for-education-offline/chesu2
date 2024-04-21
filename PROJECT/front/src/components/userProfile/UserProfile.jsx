@@ -18,6 +18,10 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
         navigate('/createpost');
     }
 
+    function handleOpenChat(){
+        navigate(`/chat/${user.id}`);
+    }
+
     return (
         <div className={styles.card}>
             <div className={styles.profile}>
@@ -59,12 +63,19 @@ const UserProfile = ({ user, followersCount, followingCount, postsCount }) => {
                     </div>
                 }
 
-                {isLoggedIn() && user.id === loogedUser().user_id &&
+                {isLoggedIn() && user.id === loogedUser().user_id ?
 
                     <div className={styles.buttons}>
                         <Button>Редактировать</Button>
                         <Button onClick={handleCreatePost}>Новая публикация</Button>
                         <Button onClick={() => navigate('/logout')}>Выйти</Button>
+                    </div>
+
+                    :
+
+                    <div className={styles.buttons}>
+                        <Button onClick={handleOpenChat}>Написать</Button>
+                        <Button>Написать отзыв</Button>
                     </div>
                 }
 

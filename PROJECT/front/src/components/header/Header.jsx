@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Header.module.css';
 import {Logo} from '../logo/Logo'
 import {useTheme} from '../../hooks/useTheme';
@@ -7,6 +7,7 @@ import {SwitchToggle} from '../generic/switch_toggle/SwitchToggle'
 import {Button} from '../generic/button/Button';
 import {Link} from "react-router-dom";
 import {useAuthStore} from "../../store/auth";
+import {Input} from "../generic/input/Input";
 
 
 
@@ -22,6 +23,7 @@ function HeaderContent(){
     return (
         <div className={styles.headerContent}>
             <Logo></Logo>
+
             <Navigations></Navigations>
         </div>
     );
@@ -44,11 +46,12 @@ function Navigations(){
     return (
         <div className={styles.navigations}>
             {/*<SwitchToggle isChecked={isChecked} onChecked={switchTheme}></SwitchToggle>*/}
-            
+
             <NavigationItem title={'Главная'} to={'/'}></NavigationItem>
             <NavigationItem title={'Университеты'} to={'/universitylist'}></NavigationItem>
+            <NavigationItem title={'Студенты'} to={'/studens'}></NavigationItem>
 
-            {isLoggedIn() && <NavigationItem title={'Новая публикация'} to={'/createpost'}></NavigationItem>}
+            {/*{isLoggedIn() && <NavigationItem title={'Новая публикация'} to={'/createpost'}></NavigationItem>}*/}
 
             {isLoggedIn() ?
                 <NavigationItem title={'Профиль'} to={`/users/${user().user_id}`}></NavigationItem> : <NavigationItem title={'Войти'} to={'/login'}></NavigationItem>}

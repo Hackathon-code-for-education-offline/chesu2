@@ -7,14 +7,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, UniversitySerializer, FacultySerializer, \
-    PostSerializer, CommentSerializer, UserSerializer, PhotoSerializer
+    PostSerializer, CommentSerializer, UserSerializer, PhotoSerializer, MessageSerializer, ChatRoomSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 import json
 
-from .models import User, University, Faculty, Post, Comment, Photo
+from .models import User, University, Faculty, Post, Comment, Photo, ChatRoom, Message
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -61,6 +61,43 @@ def testEndPoint(request):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class ChatRoomView(APIView):
+    def get(self, request, pk):
+        room = ChatRoom.objects.get(pk=pk)
+        messages = room.messages.all()
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, pk):
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(author=request.user, room_id=pk)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetOrCreateChatView(APIView):
+    def get(self, request, user_id):
+        user = request.user
+        other_user = User.objects.get(id=user_id)
+        chat_room = ChatRoom.objects.filter(participants=user).filter(participants=other_user).first()
+
+        if not chat_room:
+            chat_room = ChatRoom.objects.create()
+            chat_room.participants.add(user, other_user)
+            chat_room.save()
+
+        serializer = ChatRoomSerializer(chat_room)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class MessageListView(APIView):
+    def get(self, request, *args, **kwargs):
+        messages = Message.objects.all()
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data)
 
 
 class UniversityViewSet(viewsets.ModelViewSet):

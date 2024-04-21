@@ -39,6 +39,24 @@ class Skill(models.Model):
         return self.name
 
 
+class ChatRoom(models.Model):
+    title = models.CharField(max_length=255)
+    participants = models.ManyToManyField(User, related_name='chat_rooms')
+
+    def __str__(self):
+        return self.title
+
+
+class Message(models.Model):
+    author = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)
+    room = models.ForeignKey(ChatRoom, related_name='messages', on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message by {self.author.username} at {self.timestamp}"
+
+
 class University(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)

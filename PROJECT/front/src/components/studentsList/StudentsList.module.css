@@ -1,0 +1,13 @@
+/* StudentList.module.css */
+.studentList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/* StudentCard.module.css */
+.studentCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}

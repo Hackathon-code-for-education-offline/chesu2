@@ -83,6 +83,18 @@ class UserSerializer(serializers.ModelSerializer):
         return PostSerializer(posts, many=True, read_only=True, context=self.context).data
 
 
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['id', 'author', 'room', 'text', 'timestamp']
+
+
+class ChatRoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatRoom
+        fields = ['id', 'title', 'participants']
+
+
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty

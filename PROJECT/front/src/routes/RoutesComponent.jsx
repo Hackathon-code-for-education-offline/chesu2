@@ -12,6 +12,8 @@ import PostPage from "../pages/postPage/PostPage";
 import CreatePostPage from "../pages/createPostPage/CreatePostPage";
 import UserProfile from "../components/userProfile/UserProfile";
 import UserProfilePage from "../pages/UserProfilePage";
+import StudentList from "../components/studentsList/StudensList";
+import ChatPage from "../pages/ChatPage";
 
 function RoutesComponent() {
     return (
@@ -23,7 +25,10 @@ function RoutesComponent() {
                     <Route path="/login" element={<Login/>} />
                     <Route path="/logout" element={<Logout/>} />
 
+                    <Route path="/chat/:userId" element={<ChatPage />} />
+
                     <Route path="/users/:userId" element={<UserProfilePage />} />
+                    <Route path="/studens" element={<StudentList />} />
 
                     <Route path="/universities/:universityId" element={<UniversityPage />} />
                     <Route path="/universitylist" element={<UniversityList />} />
